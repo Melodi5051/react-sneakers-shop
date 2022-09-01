@@ -1,3 +1,5 @@
+import styles from './Header.modules.scss'
+
 function Header(){
     return(
         <header className={"d-flex justify-between align-center p-40"}>
@@ -9,13 +11,13 @@ function Header(){
                 </div>
             </div>
             <ul className={"d-flex"}>
-                <li className={"mr-30"}>
+                <li className={"mr-30 d-flex flex-row align-center"}>
                     <img width={18} height={18} src="/img/cart.svg" alt=""/>
-                    <span>
+                    <p>
                     1205 руб.
-                </span>
+                    </p>
                 </li>
-                <li>
+                <li className={'d-flex flex-row align-center'}>
                     <img width={18} height={18} src="/img/user.svg" alt=""/>
                 </li>
             </ul>

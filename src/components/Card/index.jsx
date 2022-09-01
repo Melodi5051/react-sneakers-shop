@@ -1,6 +1,6 @@
 import styles from './Card.module.scss'
 
-function Index(props) {
+function Card(props) {
     return (
 <div className={`${styles.card} mb-40`}>
     <div className={`${styles.favorite}`}>
@@ -13,11 +13,11 @@ function Index(props) {
             <span>Цена:</span>
             <b>{props.price} руб.</b>
         </div>
-        <button className={'button'}>
+        <button className={`${styles.button}`}>
             <img width={30} height={30} src="/img/pluse.svg" alt="Plus"/>
         </button>
     </div>
 </div>
 )}
 
-export default Index
+export default Card
