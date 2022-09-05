@@ -20,8 +20,12 @@ function App() {
     }, [])
 
     const onAddToCart = (sneakersObj) => {
-
-        setCartItems(prev => [...prev, sneakersObj])
+        if(!sneakersObj.isAdded){
+            setCartItems(prev => [...prev, sneakersObj])
+        }
+        else if(sneakersObj.isAdded){
+            cartItems.pop()
+        }
     }
     return (
     <div className="wrapper clear">
