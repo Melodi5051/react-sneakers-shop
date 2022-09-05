@@ -1,4 +1,5 @@
 import styles from './Drawer.module.scss'
+import React from "react";
 function Drawer({onClickClose, items = []}){
     return(
         <div className={`${styles.overlay}`}>
@@ -22,18 +23,24 @@ function Drawer({onClickClose, items = []}){
                         }
                     </div>
                     <div className={`${styles.cart_total_block}`}>
-                        <ul>
-                            <li className={'d-flex align-end'}>
-                                <span>Итого:</span>
-                                <div></div>
-                                <b>21 498 руб. </b>
-                            </li>
-                            <li className={'d-flex align-end'}>
-                                <span>Налог 5%: </span>
-                                <div></div>
-                                <b>1074 руб. </b>
-                            </li>
-                        </ul>
+                        {
+                                    <ul>
+                                        <li className={'d-flex align-end'}>
+                                            <span>Итого:</span>
+                                            <div></div>
+                                            <b>{items.reduce((sum, elem) => {
+                                                 return sum + Number(elem.priceSneakers)
+                                            }, 0)} руб.</b>
+                                        </li>
+                                        <li className={'d-flex align-end'}>
+                                            <span>Налог 5%: </span>
+                                            <div></div>
+                                            <b>{items.reduce((sum, elem) => {
+                                                return (Number(sum + Number(elem.priceSneakers)) * 0.05).toFixed(2)
+                                            }, 0)} руб.</b>
+                                        </li>
+                                    </ul>
+                        }
                         <button className={`${styles.green_button}`}>Оформить заказ
                             <img src="/img/arrow.svg" alt="arrow"/>
                         </button>

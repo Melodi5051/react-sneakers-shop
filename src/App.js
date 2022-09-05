@@ -30,7 +30,7 @@ function App() {
     return (
     <div className="wrapper clear">
         {cartOpened && <Drawer items={cartItems} onClickClose={() => setCartOpened(false)}/>}
-        <Header onClickCart={() => setCartOpened(true)} />
+        <Header items={cartItems} onClickCart={() => setCartOpened(true)} />
       <div className="content p-40">
           <div className={"d-flex align-center mb-40 justify-between"}>
             <h1>Все кроссовки</h1>

@@ -1,6 +1,7 @@
 import styles from './Header.modules.scss'
-
-function Header(props){
+import App from "../../App";
+import React from "react";
+function Header({onClickCart, items = []}){
     return(
         <header className={"d-flex justify-between align-center p-40"}>
             <div className={"d-flex align-center"}>
@@ -11,10 +12,12 @@ function Header(props){
                 </div>
             </div>
             <ul className={"d-flex"}>
-                <li onClick={props.onClickCart} className={"mr-30 d-flex flex-row align-center cu-p"}>
+                <li onClick={onClickCart} className={"mr-30 d-flex flex-row align-center cu-p"}>
                     <img width={18} height={18} src="/img/cart.svg" alt=""/>
                     <p>
-                    1205 руб.
+                        {items.reduce((sum, elem) => {
+                            return sum + Number(elem.priceSneakers)
+                        }, 0)} руб.
                     </p>
                 </li>
                 <li className={'d-flex flex-row align-center'}>
