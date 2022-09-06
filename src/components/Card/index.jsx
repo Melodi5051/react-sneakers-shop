@@ -3,15 +3,24 @@ import React from "react";
 function Card({onFavorit, imgSneakers, titleSneakers, priceSneakers, onPlus}) {
 
     const [isAdded, setIsAdded] = React.useState(false)
+    const [isFavorite, setIsFavorite] = React.useState(false)
 
-    const handleClick = () => {
-        onPlus({imgSneakers, titleSneakers, priceSneakers, isAdded})
+    const handleClickFavorite = () => {
+        setIsFavorite(!isFavorite)
+    }
+    const handleClickAdd = () => {
+        onPlus({imgSneakers, titleSneakers, priceSneakers})
         setIsAdded(!isAdded)
     }
     return (
 <div className={`${styles.card} mb-40`}>
     <div onClick={onFavorit} className={`${styles.favorite}`}>
-        <img src="/img/heart_enactive.svg" alt="unlike"/>
+        <img
+            onClick={handleClickFavorite}
+            src={isFavorite
+            ? "/img/heart_active.svg"
+            : "/img/heart_enactive.svg"}
+              alt="Plus"/>
     </div>
     <img width={133} height={112} src={imgSneakers} alt="Sneakers"/>
     <h5>{titleSneakers}</h5>
@@ -22,7 +31,7 @@ function Card({onFavorit, imgSneakers, titleSneakers, priceSneakers, onPlus}) {
         </div>
             <img
                 className={`${styles.cursor_pointer}`}
-                onClick={handleClick}
+                onClick={handleClickAdd}
                 src={isAdded
                     ? "/img/bt_checked.svg"
                     : "/img/pluse.svg"}

@@ -1,4 +1,3 @@
-
 .overlay {
   background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
@@ -42,24 +41,32 @@
       }
     }
   }
-  .green_button{
-    position: relative;
-    &:hover{
-      img{
-        transform: translateX(5px);
-      }
-    }
-    img{
-      position: absolute;
-      right: 30px;
-      top: 20px;
-      transition: transform 0.15s ease-in-out;
-
-    }
-  }
 }
 .green_button{
-
+  position: relative;
+  &:hover{
+    img{
+      transform: translateX(5px);
+    }
+  }
+  .rightArrow{
+    position: absolute;
+    right: 30px;
+    top: 20px;
+    transition: transform 0.15s ease-in-out;
+  }
+  .leftArrow{
+    position: absolute;
+    left: 30px;
+    top: 20px;
+    rotate: (180deg);
+    transition: transform 0.15s ease-in-out;
+  }
+}
+.mt300 {
+  margin-top: 200px;
+}
+.green_button{
   width: 100%;
   height: 55px;
   background: #9DD558;
