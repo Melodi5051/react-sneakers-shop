@@ -4,7 +4,7 @@ function Drawer({onClickClose, onRemove, items = []}){
     return(
         <div className={`${styles.overlay}`}>
             { items.length > 0 ? (
-                    <div className={`${styles.drawer} d-flex flex-column`}>
+                <div className={`${styles.drawer} d-flex flex-column`}>
                         <h2 className={'mb-30 d-flex justify-between'}>Корзина
                             <img  onClick={onClickClose} className={'remove_btw cu-p'} src="/img/btw_remove.svg" alt="close"/>
                         </h2>
