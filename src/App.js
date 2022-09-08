@@ -23,6 +23,9 @@ function App() {
         axios.get("https://6314ad13fc9dc45cb4f19e8c.mockapi.io/cart").then(res => {
             setCartItems(res.data)
         })
+        axios.get("https://6314ad13fc9dc45cb4f19e8c.mockapi.io/Favorites").then(res => {
+            setFavorites(res.data)
+        })
     }, [])
     const onAddToCart = (sneakersObj) => {
         axios.post("https://6314ad13fc9dc45cb4f19e8c.mockapi.io/cart", sneakersObj)
@@ -33,8 +36,10 @@ function App() {
         setCartItems(prev => prev.filter(item => item.id !== id))
     }
     const onAddToFavorite = (sneakersObj) => {
-        axios.post("https://6314ad13fc9dc45cb4f19e8c.mockapi.io/Favorites", sneakersObj)
-        setFavorites(prev => [...prev, sneakersObj])
+        if(sneakersObj.favorites){
+            axios.post(`https://6314ad13fc9dc45cb4f19e8c.mockapi.io/Favorites`, sneakersObj)
+            setFavorites(prev => [...prev, sneakersObj])
+        }
     }
     const onChangeSearchInput = event => {
         setSearchValue(event.target.value)
@@ -47,7 +52,7 @@ function App() {
             <Header items={cartItems} onClickCart={() => setCartOpened(true)} />
 
             <Routes>
-                <Route path={'/Home'} element={
+                <Route path={''} element={
                     <Home
                         items={items}
                         searchValue={searchValue}
@@ -57,7 +62,12 @@ function App() {
                         onChangeSearchInput={onChangeSearchInput}
                     />
                 }/>
-                <Route path={'favorites'} element={<Favorites/>}/>
+                <Route path={'/favorites'} element={
+                    <Favorites
+                        items={favorites}
+                        onAddToFavorite={onAddToFavorite}
+                    />}
+                />
             </Routes>
     </div>
   );
