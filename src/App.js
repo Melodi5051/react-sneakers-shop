@@ -36,10 +36,8 @@ function App() {
         setCartItems(prev => prev.filter(item => item.id !== id))
     }
     const onAddToFavorite = (sneakersObj) => {
-        if(sneakersObj.favorites){
             axios.post(`https://6314ad13fc9dc45cb4f19e8c.mockapi.io/Favorites`, sneakersObj)
             setFavorites(prev => [...prev, sneakersObj])
-        }
     }
     const onChangeSearchInput = event => {
         setSearchValue(event.target.value)
