@@ -12,12 +12,10 @@ function Favorites({items, searchValue, setSearchValue, onChangeSearchInput, onA
                     items.map((obj, index) =>
                         <Card
                             key={index}
-                            titleSneakers={`${obj.titleSneakers}`}
-                            priceSneakers={`${obj.priceSneakers}`}
-                            imgSneakers={`${obj.imgSneakers}`}
                             onFavorite={(sneakersObj) => onAddToFavorite(sneakersObj)}
                             onPlus={(sneakersObj) => onAddToCart(sneakersObj)}
                             favorited={true}
+                            {...obj}
                         />
                     )}
             </div>

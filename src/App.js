@@ -28,16 +28,25 @@ function App() {
         })
     }, [])
     const onAddToCart = (sneakersObj) => {
-        axios.post("https://6314ad13fc9dc45cb4f19e8c.mockapi.io/cart", sneakersObj)
-        setCartItems(prev => [...prev, sneakersObj])
+        axios.post("https://6314ad13fc9dc45cb4f19e8c.mockapi.io/cart", sneakersObj).then(
+            res => setCartItems(prev => [...prev, res.data])
+        )
     }
-    const onRemoveItem = (id) => {
-        axios.delete(`https://6314ad13fc9dc45cb4f19e8c.mockapi.io/cart/${id}`)
-        setCartItems(prev => prev.filter(item => item.id !== id))
+    const onRemoveItem = (sneakersObj) => {
+        axios.delete(`https://6314ad13fc9dc45cb4f19e8c.mockapi.io/cart/${sneakersObj.id}`)
+        setCartItems(prev => prev.filter(item => item.id !== sneakersObj.id))
     }
-    const onAddToFavorite = (sneakersObj) => {
-            axios.post(`https://6314ad13fc9dc45cb4f19e8c.mockapi.io/Favorites`, sneakersObj)
-            setFavorites(prev => [...prev, sneakersObj])
+    const onAddToFavorite = async (sneakersObj) => {
+        try{
+            if(favorites.find(favObj => favObj.id === sneakersObj.id)){
+                axios.delete(`https://6314ad13fc9dc45cb4f19e8c.mockapi.io/Favorites/${sneakersObj.id}`)
+            }else{
+                const {data} = await axios.post(`https://6314ad13fc9dc45cb4f19e8c.mockapi.io/Favorites`, sneakersObj)
+                setFavorites(prev => [...prev, data])
+            }
+        } catch (error){
+            alert('Error')
+        }
     }
     const onChangeSearchInput = event => {
         setSearchValue(event.target.value)
@@ -64,6 +73,7 @@ function App() {
                     <Favorites
                         items={favorites}
                         onAddToFavorite={onAddToFavorite}
+                        onAddToCart={onAddToCart}
                     />}
                 />
             </Routes>
@@ -72,4 +82,4 @@ function App() {
 }
 
 export default App
-//TODO сделаь отображение при перезагрузки страницы, какие товары есть в корзине
+//TODO сделаь отображение при перезагрузки страницы, какие товары есть в корзине, и избранном
